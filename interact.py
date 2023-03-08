@@ -79,43 +79,19 @@ def main(
     generator = load(
         ckpt_dir, tokenizer_path, local_rank, world_size, max_seq_len, max_batch_size
     )
+    while True:
+        ppt = input("Please enter a prompt (\"END\" to end the program.): ")
+        if(ppt.strip()=="END"):
+            return
+        prompts = []
+        prompts.append(ppt)
+        results = generator.generate(
+            prompts, max_gen_len=256, temperature=temperature, top_p=top_p
+        )
 
-    prompts = [
-#         # For these prompts, the expected answer is the natural continuation of the prompt
-#         "I believe the meaning of life is",
-#         "Simply put, the theory of relativity states that ",
-#         "Building a website can be done in 10 simple steps:\n",
-#         # Few shot prompts: https://huggingface.co/blog/few-shot-learning-gpt-neo-and-inference-api
-        """Tweet: "I hate it when my phone battery dies."
-Sentiment: Negative
-###
-Tweet: "My day has been 👍"
-Sentiment: Positive
-###
-Tweet: "This is the link to the article"
-Sentiment: Neutral
-###
-Tweet: "This new music video was incredibile"
-Sentiment:""",
-#         """Translate English to French:
-
-# sea otter => loutre de mer
-
-# peppermint => menthe poivrée
-
-# plush girafe => girafe peluche
-
-# cheese =>""",
-"I can give you a python code to code a bubble sorting. This is the code:",
-"你好，我是LLaMA，一个大型语言模型，我可以"
-    ]
-    results = generator.generate(
-        prompts, max_gen_len=256, temperature=temperature, top_p=top_p
-    )
-
-    for result in results:
-        print(result)
-        print("\n==================================\n")
+        for result in results:
+            print(result)
+            print("\n==================================\n")
 
 
 if __name__ == "__main__":

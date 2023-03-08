@@ -1,5 +1,17 @@
+<!--
+ * @Author: HU Zheng
+ * @Date: 2023-03-08 10:30:13
+ * @LastEditors: HU Zheng
+ * @LastEditTime: 2023-03-08 23:00:29
+ * @Description: file content
+-->
 # LLaMA for Intel Arc GPU
 Available for Intel Arc GPU.  
+
+## Interact 
+```bash
+torchrun --standalone --nproc_per_node 1 interact.py --ckpt_dir models/7B --tokenizer_path ./models/7B/tokenizer.model --max_batch_size 32 --max_seq_len 128
+```
 
 # LLaMA 
 
