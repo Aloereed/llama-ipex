@@ -1,10 +1,3 @@
-'''
-Author: HU Zheng
-Date: 2023-03-08 20:02:35
-LastEditors: HU Zheng
-LastEditTime: 2023-03-08 21:34:16
-Description: file content
-'''
 import torch
 import intel_extension_for_pytorch as ipex
 def get_device():
